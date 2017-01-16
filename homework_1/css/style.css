@@ -1,0 +1,174 @@
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+/* start commented backslash hack \*/
+* html .clearfix {
+    height: 1%;
+}
+
+.clearfix {
+    display: block;
+}
+
+/* close commented backslash hack */
+.main_panel {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.mainHead {
+    text-align: center;
+}
+
+/*start post*/
+.post_section {
+    width: 70%;
+    float: left;
+}
+
+.post_section a {
+    text-decoration: none;
+    color: #313131;
+}
+
+.post_section a:hover {
+    color: #ce1f28;
+}
+
+.post_header {
+    text-align: center;
+    font-size: 25px;
+    padding-bottom: 15px;
+}
+
+.post_big {
+    /*padding: 2%;*/
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    border-bottom: 1px solid #c6c6c6;
+
+}
+
+.post_small {
+    width: 46%;
+    float: left;
+    /*padding: 2%;*/
+    margin: 2%;
+    border-bottom: 1px solid #c6c6c6;
+
+}
+
+.post_footer {
+    margin-top: 10px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.read {
+    padding: 3px 11px;
+    border-top: 1px solid #c6c6c6;
+    border-bottom: 1px solid #c6c6c6;
+}
+
+.read a {
+    color: #ce1f28;
+}
+
+.post_meta {
+    margin-top: 20px;
+    padding-bottom: 25px;
+    font-size: 13px;
+}
+
+.author {
+    float: left;
+}
+
+.comments {
+    float: right;
+}
+
+/*close post*/
+
+/*start sidebar*/
+.sidebar {
+    float: left;
+    margin-left: 4%;
+    width: 26%;
+}
+
+.head_sidebar {
+    color: #f9f9f9;
+    height: 24px;
+    background-color: #383838;
+    text-align: center;
+    padding-top: 8px;
+    text-transform: uppercase;
+}
+
+.body_sidebar ul {
+    padding: 0;
+}
+
+.body_sidebar ul li {
+    list-style: none;
+    padding-bottom: 10px;
+    text-decoration: none;
+}
+
+.body_sidebar ul li a {
+    text-decoration: none;
+    color: #313131;
+}
+
+/*close sidebar*/
+
+/*start navigation*/
+.navigation {
+    border-top: 1px solid #c6c6c6;
+    border-bottom: 1px solid #c6c6c6;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: #313131;
+    /*font-weight: bold;*/
+    font-size: 15px;
+}
+.navigation a:hover {
+    color: #ce1f28;
+}
+.navigation ul {
+    padding: 0;
+}
+
+.navigation ul li {
+    display: inline;
+    padding-right: 15px;
+}
+
+/*close navigation*/
+
+/*open footer*/
+.main_footer{
+    padding-top: 40px;
+    background-color: #f0f0f0;
+    margin-top: 30px;
+    height: 30px;
+    text-align: center;
+}
+/*close footer*/
