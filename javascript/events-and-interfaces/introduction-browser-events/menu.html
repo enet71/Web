@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        .menu {
+            cursor: pointer;
+        }
+
+        .menu.menu_close::before {
+            content: '▶ ';
+        }
+
+        .menu.menu_open::before {
+            content: '▼ ';
+        }
+
+        .close {
+            display: none;
+        }
+
+        .open {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+<span class="menu menu_close">
+ Сладости (нажми меня)!
+</span>
+<ul class="close">
+    <li>Торт</li>
+    <li><span class="menu menu_close">Пончик</span>
+        <ul class="close">
+            <li>Торт</li>
+            <li>Пончик</li>
+            <li>Пирожное</li>
+        </ul>
+    </li>
+    <li>Пирожное</li>
+</ul>
+
+<script>
+    var menu = document.querySelectorAll(".menu");
+    for (let i = 0; i < menu.length; i++) {
+        menu[i].addEventListener("click", function () {
+            var close = (menu[i].parentNode).querySelector(".close");
+            close.classList.toggle("open");
+            menu[i].classList.toggle("menu_open");
+        });
+    }
+</script>
+</body>
+</html>

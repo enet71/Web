@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+<div id="tree"></div>
+
+<!-- Результат должен быть таким:
+<div id="tree">
+<ul>
+<li>Рыбы
+<ul>
+<li>Форель</li>
+<li>Щука</li>
+</ul>
+</li>
+<li>Деревья
+<ul>
+<li>Хвойные
+<ul>
+<li>Лиственница</li>
+<li>Ель</li>
+</ul>
+</li>
+<li>Цветковые
+<ul>
+<li>Берёза</li>
+<li>Тополь</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+-->
+
+<script>
+    var data = {
+        "Рыбы": {
+            "Форель": {},
+            "Щука": {}
+        },
+
+        "Деревья": {
+            "Хвойные": {
+                "Лиственница": {},
+                "Ель": {}
+            },
+            "Цветковые": {
+                "Берёза": {},
+                "Тополь": {}
+            }
+        }
+    };
+
+    function createTreeInner(container, data) {
+        container.innerHTML = getData(data, "");
+    }
+
+    function getData(data, code) {
+        var ul = false;
+        for (var element in data) {
+            var li = "<li>" + getData(data[element], element) + "</li>";
+            if (ul === false) {
+                code += "<ul>" + li;
+            } else {
+                code += li + "</ul>";
+            }
+            ul = true;
+        }
+        return code;
+    }
+
+    createTreeInner(document.getElementById('tree'), data);
+</script>
+
+</body>
+
+</html>

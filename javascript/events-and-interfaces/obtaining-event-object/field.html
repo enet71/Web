@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        #field {
+            width: 200px;
+            height: 150px;
+            border: 10px groove black;
+            background-color: #00FF00;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        #ball {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 1s;
+        }
+    </style>
+</head>
+
+<body style="height:2000px">
+
+Кликните на любое место поля, чтобы мяч перелетел туда.
+<br> Мяч никогда не вылетит за границы поля.
+
+
+<div id="field">
+    <img src="https://js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . .
+</div>
+
+<script>
+    var field = document.querySelector("#field");
+    var ball = field.querySelector("#ball");
+    ball.style.width = "40px";
+    var ballWidth = ball.clientWidth;
+
+    field.addEventListener("click", function (e) {
+        var fieldCoord = this.getBoundingClientRect();
+        var x = e.clientX - (fieldCoord.left + field.clientLeft) - ballWidth / 2;
+        var y = e.clientY - (fieldCoord.top + field.clientTop) - ballWidth / 2;
+
+
+        if ((e.clientX - fieldCoord.left - field.clientLeft - ballWidth / 2) < 0) {
+            x = 0;
+        }
+
+        if ((e.clientX + ballWidth / 2) > fieldCoord.right - field.clientLeft) {
+            x = field.clientWidth - ballWidth;
+        }
+
+        if ((e.clientY - fieldCoord.top - field.clientTop - ballWidth / 2) < 0) {
+            y = 0;
+        }
+
+        if ((e.clientY + ballWidth / 2) > fieldCoord.bottom - field.clientTop) {
+            y = field.clientHeight - ballWidth;
+        }
+        ball.style.top = y + "px";
+        ball.style.left = x + "px";
+    });
+
+
+</script>
+</body>
+</html>

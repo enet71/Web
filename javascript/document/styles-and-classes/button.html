@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+<div id="button">
+
+</div>
+
+<script>
+    var link = document.createElement("a");
+    link.innerHTML = "Нажми меня";
+    link.href="#";
+
+    link.style.borderRadius = "8px";
+    link.style.border= "2px groove green";
+    link.style.display= "block";
+    link.style.height= "30px";
+    link.style.lineHeight= "30px";
+    link.style.width= "100px";
+    link.style.textDecoration= "none";
+    link.style.textAlign= "center";
+    link.style.color= "red";
+    link.style.fontWeight="bold";
+
+    var button = document.querySelector("#button");
+    button.appendChild(link);
+
+</script>
+
+
+</body>
+
+</html>
