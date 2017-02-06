@@ -7,6 +7,7 @@
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/style.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
@@ -51,7 +52,7 @@
         var element = document.createElement("div");
         element.classList.add("collection-item");
         element.classList.add("valign-wrapper");
-        element.classList.add("move");
+        element.classList.add("item-style");
 
         var index = doContainer.querySelectorAll(".collection-item").length + doneContainer.querySelectorAll(".collection-item").length;
         element.innerHTML = getElement(doInput.value, index);
@@ -61,7 +62,7 @@
         checkNothing()
     });
 
-    document.body.addEventListener("click", function (e) {
+    document.addEventListener("click", function (e) {
         if (!e.target.classList.contains("delete")) {
             return;
         }
@@ -69,13 +70,13 @@
         checkNothing()
     });
 
-    document.body.addEventListener("click", function (e) {
+    document.addEventListener("click", function (e) {
         if (e.target.type != "checkbox") {
             return;
         }
         var parent = e.target.parentNode;
         if (e.target.checked) {
-            doneContainer.appendChild(parent);
+            doneContainer.insertBefore(parent, doneContainer.childNodes[0]);
             parent.classList.add("done");
         } else {
             doContainer.appendChild(parent);
@@ -83,6 +84,79 @@
         }
         checkNothing()
     });
+
+    /**Drag Object*/
+    document.addEventListener("mousedown", function (e) {
+        if (e.which != 1) {
+            return;
+        }
+
+        if (!e.target.classList.contains("move")) {
+            return;
+        }
+
+        var dragObject = e.target.parentNode;
+        var parent = e.target.closest(".collection");
+        var coordsParent = parent.getBoundingClientRect();
+        var coordsObject = dragObject.getBoundingClientRect();
+        var shiftY = e.pageY - coordsObject.top;
+        var shiftInsert = 5;
+        var newElem;
+        var oldElem;
+
+        document.onmousemove = function (e) {
+            var coordsParentNew = parent.getBoundingClientRect();
+            var coordsObjectNew = dragObject.getBoundingClientRect();
+
+            dragObject.style.position = "absolute";
+            dragObject.style.width = "100%";
+            dragObject.style.zIndex = "99999";
+
+            if (e.pageY + shiftY > coordsParentNew.bottom) {
+                dragObject.style.top = coordsParentNew.bottom - coordsParent.top - dragObject.offsetHeight + "px";
+                parent.style.paddingBottom = dragObject.offsetHeight + "px";
+            } else if (e.pageY - shiftY + shiftInsert + 5 < coordsParentNew.top) {
+                dragObject.style.top = -(shiftInsert + 5);
+                drag(coordsObjectNew);
+            } else {
+                dragObject.style.top = e.pageY - coordsParent.top - shiftY + "px";
+                drag(coordsObjectNew);
+            }
+
+            return false;
+        };
+
+        document.onmouseup = function (e) {
+            dragObject.style.position = "";
+            dragObject.style.top = "";
+            dragObject.style.width = "";
+            dragObject.style.zIndex = "";
+            parent.style.paddingBottom = "";
+
+            if (oldElem) {
+                oldElem.style.paddingTop = "";
+                parent.insertBefore(dragObject, newElem);
+            }
+
+            document.onmousemove = null;
+            document.onmouseup = null;
+        };
+
+        function drag(coordsObjectNew) {
+            var elem = document.elementFromPoint(coordsObjectNew.left + 50, coordsObjectNew.bottom + shiftInsert);
+
+            if (newElem) {
+                oldElem = newElem;
+                oldElem.style.paddingTop = "";
+            }
+
+            newElem = elem.closest(".collection-item");
+            if (newElem) {
+                newElem.style.paddingTop = dragObject.offsetHeight + "px";
+            }
+        }
+    });
+
 
     function getElement(text, index) {
         var date = new Date();
@@ -95,7 +169,7 @@
         if (month < 10) {
             month = "0" + month;
         }
-        return '<input type="checkbox" id="myCheckbox' + index + '" class="filled-in"/>' +
+        return '<i class="fa fa-arrows-v move" aria-hidden="true"></i><input type="checkbox" id="myCheckbox' + index + '" class="filled-in"/>' +
                 '<label for="myCheckbox' + index + '" style="top:2px"></label>' +
                 '<span class="text">' + text + '</span>' +
                 '<span class="date">' + day + '.' + month + '.' + date.getFullYear() + '</span>' +

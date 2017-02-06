@@ -19,9 +19,8 @@
     color: #666666;
 }
 
-.move {
-
-    transition: all 1s;
+.item-style {
+    /*transition: all 1s;*/
 }
 
 .text {
@@ -33,4 +32,10 @@
 .nothingText{
     text-align: center;
     color: #757575;
+}
+
+.move{
+    color: #666666;
+    margin-right: 10px;
+    cursor: pointer;
 }
