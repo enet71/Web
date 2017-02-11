@@ -209,12 +209,4 @@ var Fridge = function (power) {
     this.getFood = function () {
         return food.slice();
     };
-
-    this.filterFood = function (func) {
-
-    };
-
-    this.removeFood = function (item) {
-
-    }
 };
