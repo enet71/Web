@@ -106,4 +106,19 @@ function multiplyNumeric(obj) {
     }
 }
 
-
+/**Task_5_Array*/
+///
+function lastElement(array) {
+    return array[array.length - 1];
+}
+///
+function addToArray(array, value) {
+    array.push(value);
+}
+///
+var styles = ["Джаз","Блюз"];
+styles.push("Рок-н-Ролл");
+styles[styles.length - 2] = "Классика";
+console.log(styles.shift());
+styles.unshift("Рэп","Регги");
+console.log(styles);
