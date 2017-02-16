@@ -1,25 +1,88 @@
-var car = {
-    move: function () {
+/*var car = {
+ move: function () {
+ console.log("Car moves");
+ },
+ stop: function () {
+ console.log("Car stop");
+ }
+ };
+
+ var Car = function (width, height) {
+ this.width = width;
+ this.height = height;
+ };
+
+ var Tipper = function (width, height, maxWeight) {
+ Car.apply(this, arguments);
+ this.maxWeight = maxWeight;
+ };
+
+
+ Car.prototype = car;
+ Tipper.prototype = Object.create(Car.prototype);
+
+ Tipper.prototype.upBody = function () {
+ console.log("The body is raised.");
+ };
+
+ Tipper.prototype.dropBody = function () {
+ console.log("The body is dropped.");
+ };*/
+
+/*var car = {
+ move: function () {
+ console.log("Car moves");
+ },
+ stop: function () {
+ console.log("Car stop");
+ }
+ };
+
+ var Car = function (width, height) {
+ this.width = width;
+ this.height = height;
+ };
+
+ var Tipper = function (width, height, maxWeight) {
+ Car.apply(this, arguments);
+ this.maxWeight = maxWeight;
+ };
+
+
+ Car.prototype = car;
+ Tipper.prototype = Object.create(Car.prototype);
+
+ Tipper.prototype.upBody = function () {
+ console.log("The body is raised.");
+ };
+
+ Tipper.prototype.dropBody = function () {
+ console.log("The body is dropped.");
+ };*/
+
+
+class Car {
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
+    };
+
+    move() {
         console.log("Car moves");
-    },
-    stop: function () {
+    };
+
+    stop() {
         console.log("Car stop");
-    }
-};
+    };
+}
 
-var Car = function (width, height) {
-    this.width = width;
-    this.height = height;
-};
+class Tipper extends Car {
+    constructor(width, height, maxWeight) {
+        super(width, height);
+        this.maxWeight = maxWeight;
+    };
+}
 
-var Tipper = function (width, height, maxWeight) {
-    Car.apply(this, arguments);
-    this.maxWeight = maxWeight;
-};
-
-
-Car.prototype = car;
-Tipper.prototype = Object.create(Car.prototype);
 
 Tipper.prototype.upBody = function () {
     console.log("The body is raised.");
@@ -28,7 +91,6 @@ Tipper.prototype.upBody = function () {
 Tipper.prototype.dropBody = function () {
     console.log("The body is dropped.");
 };
-
 
 
 var tipper = new Tipper(300, 400, 500);
